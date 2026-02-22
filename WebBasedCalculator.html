@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Based Calculator by Eddefi</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #141E30, #243B55);
+}
+
+.calculator {
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 25px;
+    padding: 25px;
+    width: 420px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.15);
+}
+
+.title {
+    text-align: center;
+    color: white;
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+#display {
+    width: 100%;
+    height: 70px;
+    border-radius: 15px;
+    border: none;
+    padding: 15px;
+    font-size: 26px;
+    text-align: right;
+    margin-bottom: 20px;
+    background: rgba(0,0,0,0.4);
+    color: #00ffe7;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+}
+
+button {
+    padding: 15px;
+    font-size: 17px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    background: rgba(255,255,255,0.2);
+}
+
+.operator {
+    background: #ff8c00;
+}
+
+.operator:hover {
+    background: #ffa733;
+}
+
+.equal {
+    background: #00c853;
+    grid-column: span 2;
+}
+
+.equal:hover {
+    background: #2cff7a;
+}
+
+.clear {
+    background: #ff1744;
+}
+
+.clear:hover {
+    background: #ff4569;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 15px;
+    color: #ccc;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="calculator">
+    <div class="title">Scientific Calculator</div>
+    <input type="text" id="display" readonly>
+
+    <div class="buttons">
+        <button onclick="clearDisplay()" class="clear">C</button>
+        <button onclick="deleteLast()">DEL</button>
+        <button onclick="append('(')">(</button>
+        <button onclick="append(')')">)</button>
+        <button onclick="append('%')" class="operator">%</button>
+
+        <button onclick="append('7')">7</button>
+        <button onclick="append('8')">8</button>
+        <button onclick="append('9')">9</button>
+        <button onclick="append('/')" class="operator">÷</button>
+        <button onclick="append('Math.sqrt(')">√</button>
+
+        <button onclick="append('4')">4</button>
+        <button onclick="append('5')">5</button>
+        <button onclick="append('6')">6</button>
+        <button onclick="append('*')" class="operator">×</button>
+        <button onclick="append('**2')">x²</button>
+
+        <button onclick="append('1')">1</button>
+        <button onclick="append('2')">2</button>
+        <button onclick="append('3')">3</button>
+        <button onclick="append('-')" class="operator">−</button>
+        <button onclick="append('Math.log10(')">log</button>
+
+        <button onclick="append('0')">0</button>
+        <button onclick="append('.')">.</button>
+        <button onclick="append('+')" class="operator">+</button>
+        <button onclick="append('Math.sin(')">sin</button>
+        <button onclick="append('Math.cos(')">cos</button>
+
+        <button onclick="append('Math.tan(')">tan</button>
+        <button onclick="append('Math.log(')">ln</button>
+        <button onclick="append('Math.PI')">π</button>
+        <button onclick="append('Math.E')">e</button>
+        <button onclick="calculate()" class="equal">=</button>
+    </div>
+
+    <div class="footer">
+        Web Based Calculator by – <strong>Eddefi</strong>
+    </div>
+</div>
+
+<script>
+let display = document.getElementById("display");
+
+function append(value) {
+    display.value += value;
+}
+
+function clearDisplay() {
+    display.value = "";
+}
+
+function deleteLast() {
+    display.value = display.value.slice(0, -1);
+}
+
+function calculate() {
+    try {
+        display.value = eval(display.value);
+    } catch {
+        display.value = "Error";
+    }
+}
+</script>
+
+</body>
+</html>
